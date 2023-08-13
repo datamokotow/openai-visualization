@@ -95,8 +95,8 @@ available_models = {"ChatGPT-4": "gpt-4","ChatGPT-3.5": "gpt-3.5-turbo"}
 if "datasets" not in st.session_state:
     datasets = {}
     # Preload datasets
-    datasets["Cars"] =pd.read_csv("cars.csv")
-    datasets["Energy Production"] =pd.read_csv("energy_production.csv")
+    datasets["Cars"] =pd.read_csv("C:/Users/Rutvi/OneDrive/2. Documents/GenAI/Chat2Vis/cars.csv")
+    datasets["Energy Production"] =pd.read_csv("C:/Users/Rutvi/OneDrive/2. Documents/GenAI/Chat2Vis/energy_production.csv")
     st.session_state["datasets"] = datasets
 else:
     # use the list already loaded
@@ -139,6 +139,11 @@ model_list = [model_name for model_name, choose_model in use_model.items() if ch
 model_count = len(model_list)
 
 # Execute chatbot query
+
+
+# ... (existing code for imports and functions)
+
+# Execute chatbot query
 if go_btn and model_count > 0:
     # Place for plots depending on how many models
     plots = st.columns(model_count)
@@ -157,7 +162,10 @@ if go_btn and model_count > 0:
                 # the answer is the completed Python script so add to the beginning of the script to it.
                 answer = primer2 + answer
                 plot_area = st.empty()
-                plot_area.pyplot(exec(answer))           
+                plot_area.pyplot(exec(answer))     
+                # Display the generated code
+                st.text("Generated Visualization Code:")
+                st.code(answer, language='python')      
             except Exception as e:
                 if type(e) == openai.error.APIError:
                     st.error("OpenAI API Error. Please try again a short time later.")
@@ -175,6 +183,9 @@ if go_btn and model_count > 0:
                     st.error("OpenAI Service is currently unavailable. Please try again a short time later.")                   
                 else:
                     st.error("Unfortunately the code generated from the model contained errors and was unable to execute. ")
+                
+# ... (remaining code for displaying datasets and social media links)
+
 
 # Display the datasets in a list of tabs
 # Create the tabs
