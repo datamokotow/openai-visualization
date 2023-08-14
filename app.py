@@ -95,8 +95,8 @@ available_models = {"ChatGPT-4": "gpt-4","ChatGPT-3.5": "gpt-3.5-turbo"}
 if "datasets" not in st.session_state:
     datasets = {}
     # Preload datasets
-    datasets["Cars"] =pd.read_csv("C:/Users/Rutvi/OneDrive/2. Documents/GenAI/Chat2Vis/cars.csv")
-    datasets["Energy Production"] =pd.read_csv("C:/Users/Rutvi/OneDrive/2. Documents/GenAI/Chat2Vis/energy_production.csv")
+    datasets["Cars"] =pd.read_csv("cars.csv")
+    datasets["Energy Production"] =pd.read_csv("energy_production.csv")
     st.session_state["datasets"] = datasets
 else:
     # use the list already loaded
